@@ -16,6 +16,8 @@ use yii\console\Controller;
 use yii\console\ExitCode;
 
 /**
+ * Queues up feed imports
+ *
  * @property Plugin $module
  */
 class FeedsController extends Controller
