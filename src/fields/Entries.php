@@ -271,7 +271,7 @@ class Entries extends Field implements FieldInterface
         $element->typeId = $typeId;
 
         $siteId = Hash::get($this->feed, 'siteId');
-        $section = Craft::$app->getEntries()->getSectionById($element->sectionId);
+        $section = Craft::$app->getSections()->getSectionByUid($element->sectionUid);
 
         if ($siteId) {
             $element->siteId = $siteId;
