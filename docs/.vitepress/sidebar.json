@@ -4,7 +4,6 @@
     "items": [
       {"text": "Introduction", "link": "/"},
       {"text": "Installation", "link": "get-started/installation-setup"},
-      {"text": "Requirements", "link": "get-started/requirements"},
       {"text": "Configuration", "link": "get-started/configuration"}
     ]
   },
@@ -59,7 +58,7 @@
         "text": "Expression Engine",
         "link": "guides/migrating-from-expressionengine"
       },
-      {"text": "Wordpress", "link": "guides/migrating-from-wordpress"}
+      {"text": "WordPress", "link": "guides/migrating-from-wordpress"}
     ]
   },
   {

@@ -1,5 +1,55 @@
 # Release Notes for Feed Me
 
+## Unreleased
+
+- Fixed an error that could occur when running a feed with nothing to process. ([#1611](https://github.com/craftcms/feed-me/pull/1611))
+- Fixed a bug where duplicate users could get created when importing entry authors with a matching email address. ([#1612](https://github.com/craftcms/feed-me/pull/1612))
+- Fixed a bug where importing into a Matrix field with “Use default value” selected, subfields could use the default value in certain scenarios. ([#1613](https://github.com/craftcms/feed-me/pull/1613))
+- Fixed a bug that could occur on PostgreSQL when using the `setEmptyValues` feed setting. ([#1620](https://github.com/craftcms/feed-me/pull/1620))
+- Fixed a bug that could occur when saving empty ("") values if `compareContent` and “Set Empty Values” were both enabled. ([#1621](https://github.com/craftcms/feed-me/pull/1621))
+- Fixed a bug that could occur when importing into a Matrix field with no blocks. ([#1622](https://github.com/craftcms/feed-me/pull/1622))
+
+## 6.8.0 - 2025-03-14
+- 
+- Added support for Craft’s batched queue jobs, so that long-running feeds can be processed in batches. ([#1598](https://github.com/craftcms/feed-me/pull/1598))
+- Improved support for importing into Time fields. ([#1595](https://github.com/craftcms/feed-me/pull/1595))
+- Fixed a PHP error that could occur with some plugins that were installed, but Feed Me doesn't support. ([#1596](https://github.com/craftcms/feed-me/pull/1596))
+- Fixed a bug where that could occur that would prevent importing Commerce Variants. ([#1605](https://github.com/craftcms/feed-me/pull/1605))
+
+## 6.7.0 - 2025-01-07
+
+- Feed Me now requires Craft CMS 5.6.0 or later.
+- Added support for viewing read-only settings on environments where `allowAdminChanges` is disabled. ([#1592](https://github.com/craftcms/feed-me/issues/1592))
+- Improved the experience of mapping relational fields with individual field instances in Craft 5. ([#1585](https://github.com/craftcms/feed-me/issues/1585))
+- Feed Me settings are now only available to admins and when `allowAdminChanges` is set to `true`. ([#1581](https://github.com/craftcms/feed-me/pull/1581))
+- Added support for Craft [Time](https://craftcms.com/docs/5.x/reference/field-types/time.html) fields. ([#1593](https://github.com/craftcms/feed-me/pull/1593))
+- Added support for `formatted` and `raw` subfields in the Google Maps plugin. ([#1587](https://github.com/craftcms/feed-me/pull/1587))
+- Fixed a bug where excessive logs would be generated in the Feed Me logs table in the database. ([#1594](https://github.com/craftcms/feed-me/pull/1594))
+- Fixed a bug where empty values were not respected for inner-element fields when `setEmptyValues` is set to `true`. ([#1590](https://github.com/craftcms/feed-me/pull/1590))
+- Fixed a bug where values with an empty string would not be treated as empty if `setEmtpyValues` is set to `true`. ([#1591](https://github.com/craftcms/feed-me/pull/1591))
+
+## 6.6.1 - 2024-12-01
+
+- Fixed a PHP error that could occur if you did not have Commerce installed when running a feed. ([#1556](https://github.com/craftcms/feed-me/issues/1556)) 
+
+## 6.6.0 - 2024-11-26
+
+- Added the `assetDownloadGuzzle` config setting which defaults to `false`. When it is set to `true`, Feed Me will use Guzzle to download assets instead curl directly. ([#1549](https://github.com/craftcms/feed-me/pull/1549))
+- Imported Commerce Products now add a single Catalog Pricing job to the queue after an import, instead of one per Product. ([#1547](https://github.com/craftcms/feed-me/pull/1547))
+- Fixed a bug where importing matching Categories could go awry if the source of the field is set to a group and not a custom source. ([#1550](https://github.com/craftcms/feed-me/pull/1550))
+- Fixed a bug when importing Category fields that started with the string `not`. ([#1551](https://github.com/craftcms/feed-me/pull/1551))
+
+## 6.5.0 - 2024-10-15
+
+- Added support for propagating Commerce Products and Variants in multi-site installs. ([#1531](https://github.com/craftcms/feed-me/pull/1531))
+- When duplicating a feed, a new passkey is generated instead of using the passkey on the original feed. ([#1534](https://github.com/craftcms/feed-me/pull/1534))
+
+## 6.4.1 - 2024-10-09
+
+- Fixed a PHP error that would occur when importing Products that had new Variants. ([#1528](https://github.com/craftcms/feed-me/pull/1528))
+- Fixed a bug where Lightswitch fields would not import correctly when nested in a Matrix or Super Table field. ([#1529](https://github.com/craftcms/feed-me/pull/1529))
+- Fixed a bug where Commerce Variant attributes were not respecting the `parseTwig` config setting. ([#1326](https://github.com/craftcms/feed-me/pull/1326))
+
 ## 6.4.0 - 2024-09-25
 
 - Added support for importing into relational fields that have custom sources selected. ([#1504](https://github.com/craftcms/feed-me/pull/1504))

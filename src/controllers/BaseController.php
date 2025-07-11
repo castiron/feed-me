@@ -23,10 +23,13 @@ class BaseController extends Controller
      */
     public function actionSettings(): Response
     {
+        $this->requireAdmin(false);
+
         $settings = Plugin::$plugin->getSettings();
 
         return $this->renderTemplate('feed-me/settings/general', [
             'settings' => $settings,
+            'readOnly' => !Craft::$app->getConfig()->getGeneral()->allowAdminChanges,
         ]);
     }
 
@@ -41,6 +44,6 @@ class BaseController extends Controller
             ->delete('{{%queue}}')
             ->execute();
 
-        return $this->redirect('feed-me/settings/general');
+        return $this->redirect('feed-me/utilities');
     }
 }

@@ -1,8 +1,15 @@
+{% requireAdmin false %}
+
 {% extends 'feed-me/_layouts/settings' %}
 
 {% import '_includes/forms' as forms %}
 
-{% set fullPageForm = true %}
+{% set readOnly = readOnly ?? false %}
+{% set fullPageForm = not readOnly %}
+
+{% if readOnly %}
+    {% set contentNotice = readOnlyNotice() %}
+{% endif %}
 
 {% block content %}
     <input type="hidden" name="action" value="plugins/save-plugin-settings">
@@ -18,6 +25,7 @@
         first: true,
         autofocus: true,
         instructions: 'Plugin name for the end user.'|t('feed-me'),
+        disabled: readOnly,
     }) }}
 
     {{ forms.textField({
@@ -26,6 +34,7 @@
         label: 'Cache Duration'|t('feed-me'),
         value: settings.cache,
         instructions: 'Cache duration (in seconds) to cache requests. Note: this only affects calls using the template tag - requests are never cached when triggering directly via the CP.'|t('feed-me'),
+        disabled: readOnly,
     }) }}
 
     <hr>
@@ -38,17 +47,13 @@
         options: {
             'feeds': 'Feeds'|t('feed-me'),
             'logs': 'Logs'|t('feed-me'),
+            'utilities': 'Utilities'|t('feed-me'),
             'settings': 'Settings'|t('feed-me'),
         },
         values: settings.enabledTabs,
         instructions: 'Choose which tabs you would like to be shown.'|t('feed-me'),
+        disabled: readOnly,
     }) }}
-
-    <hr>
-
-    <a class="btn" href="{{ actionUrl('feed-me/base/clear-tasks') }}">
-        {{ "Clear pending job queue"|t('feed-me') }}
-    </a>
 
     {% endnamespace %}
 

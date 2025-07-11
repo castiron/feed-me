@@ -5,13 +5,14 @@ namespace craft\feedme\fields;
 use Cake\Utility\Hash;
 use craft\feedme\base\Field;
 use craft\feedme\base\FieldInterface;
-use craft\feedme\helpers\DataHelper;
+use craft\feedme\helpers\DateHelper;
+use craft\fields\Time as TimeField;
 
 /**
  *
  * @property-read string $mappingTemplate
  */
-class GoogleMaps extends Field implements FieldInterface
+class Time extends Field implements FieldInterface
 {
     // Properties
     // =========================================================================
@@ -19,12 +20,12 @@ class GoogleMaps extends Field implements FieldInterface
     /**
      * @var string
      */
-    public static string $name = 'GoogleMaps';
+    public static string $name = 'Time';
 
     /**
      * @var string
      */
-    public static string $class = 'doublesecretagency\googlemaps\fields\AddressField';
+    public static string $class = TimeField::class;
 
     // Templates
     // =========================================================================
@@ -34,7 +35,7 @@ class GoogleMaps extends Field implements FieldInterface
      */
     public function getMappingTemplate(): string
     {
-        return 'feed-me/_includes/fields/google-maps';
+        return 'feed-me/_includes/fields/time';
     }
 
     // Public Methods
@@ -45,26 +46,20 @@ class GoogleMaps extends Field implements FieldInterface
      */
     public function parseField(): mixed
     {
-        $preppedData = [];
+        $value = $this->fetchValue();
 
-        $fields = Hash::get($this->fieldInfo, 'fields');
-
-        if (!$fields) {
+        if ($value === null) {
             return null;
         }
 
-        foreach ($fields as $subFieldHandle => $subFieldInfo) {
-            $value = DataHelper::fetchValue($this->feedData, $subFieldInfo, $this->feed);
-            if ($value !== null) {
-                $preppedData[$subFieldHandle] = $value;
-            }
+        $formatting = Hash::get($this->fieldInfo, 'options.match') ?? 'auto';
+
+        $timeValue = DateHelper::parseString($value, $formatting);
+
+        if ($timeValue) {
+            return $timeValue;
         }
 
-        // Protect against sending an empty array
-        if (!$preppedData) {
-            return null;
-        }
-
-        return $preppedData;
+        return $value;
     }
 }

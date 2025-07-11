@@ -350,6 +350,7 @@ class Entry extends Element
 
         $matchedIds = null;
         foreach ($values as $value) {
+            $hasMatch = false;
             if ($match === 'fullName') {
                 $element = UserElement::findOne(['search' => $value, 'status' => null]);
             } else {
@@ -362,11 +363,12 @@ class Entry extends Element
             }
 
             if ($element) {
+                $hasMatch = true;
                 $matchedIds[] = $element->id;
             }
 
             // Check if we should create the element. But only if email is provided (for the moment)
-            if ($create && $match === 'email') {
+            if (!$hasMatch && $create && $match === 'email') {
                 $element = new UserElement();
                 $element->username = $value;
                 $element->email = $value;
