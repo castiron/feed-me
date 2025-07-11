@@ -22,7 +22,7 @@
 {% endif %}
 
 {% if sectionUid %}
-    {% set section = craft.app.sections.getSectionByUid(sectionUid) %}
+    {% set section = craft.app.entries.getSectionByUid(sectionUid) %}
     {% if section %}
         {% set sectionEntryTypes = section.getEntryTypes() %}
     {% endif %}
