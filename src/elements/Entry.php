@@ -127,7 +127,7 @@ class Entry extends Element
 
     public function getSectionAndElementGroupIdsFromUids(string $sectionUid, string $elementGroupUid): array
     {
-        $section = Craft::$app->sections->getSectionByUid($sectionUid);
+        $section = Craft::$app->entries->getSectionByUid($sectionUid);
         $entryTypes = $section->getEntryTypes();
         $entryTypeId = null;
         foreach ($entryTypes as $entryType) {
@@ -154,7 +154,7 @@ class Entry extends Element
         $this->element->sectionId = $sectionId;
         $this->element->typeId = $entryTypeId;
 
-        $section = Craft::$app->getSections()->getSectionByUid($this->element->section->uid);
+        $section = Craft::$app->entries->getSectionByUid($this->element->section->uid);
         $siteId = Hash::get($settings, 'siteId');
 
         if ($siteId) {
