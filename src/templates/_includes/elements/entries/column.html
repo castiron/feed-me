@@ -2,8 +2,8 @@
 {% set entryTypeUid = feed.elementGroup[elementType].entryType %}
 
 {% if sectionUid and entryTypeUid %}
-    {% set section = craft.app.sections.getSectionByUid(sectionUid) %}
-    {% set entryType = craft.app.sections.getEntryTypeByUid(entryTypeUid) %}
+    {% set section = craft.app.entries.getSectionByUid(sectionUid) %}
+    {% set entryType = craft.app.entries.getEntryTypeByUid(entryTypeUid) %}
 
     {% if section and entryType %}
         <span class="element-group">{{ section.name }}</span>

@@ -5,8 +5,8 @@
     {% set sectionUid = feed.elementGroup[feed.elementType].section %}
     {% set entryTypeUid = feed.elementGroup[feed.elementType].entryType %}
 
-    {% set section = craft.app.sections.getSectionByUid(sectionUid) %}
-    {% set entryType = craft.app.sections.getEntryTypeByUid(entryTypeUid) %}
+    {% set section = craft.app.entries.getSectionByUid(sectionUid) %}
+    {% set entryType = craft.app.entries.getEntryTypeByUid(entryTypeUid) %}
 {% endif %}
 
 
