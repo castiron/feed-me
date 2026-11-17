@@ -33,6 +33,14 @@ test('set empty values returns empty string not null', function() {
     expect($this->service->parseField())->toBe('');
 });
 
+test('set empty values keeps a zero value', function() {
+    $this->service->feed = ['setEmptyValues' => true];
+    $this->service->fieldInfo = ['node' => 'value'];
+    $this->service->feedData = ['value' => '0'];
+
+    expect($this->service->parseField())->toBe('0');
+});
+
 test('without set empty values a whitespace only value becomes null', function() {
     $this->service->feed = ['setEmptyValues' => false];
     $this->service->fieldInfo = ['node' => 'value'];
